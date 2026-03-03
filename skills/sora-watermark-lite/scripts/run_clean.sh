@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -z "${SORAWM_PATH:-}" ]; then
-  if [ -d "/Users/techman/Library/Mobile Documents/com~apple~CloudDocs/Pics/SoraWatermarkCleaner/sorawm" ]; then
-    export SORAWM_PATH="/Users/techman/Library/Mobile Documents/com~apple~CloudDocs/Pics/SoraWatermarkCleaner"
-  fi
-fi
-
 if [ "$#" -eq 0 ]; then
   echo "Usage (single): $0 <input_video> <output_video> [extra args]"
   echo "Usage (batch):  $0 --input-dir <dir> --output-dir <dir> [extra args]"

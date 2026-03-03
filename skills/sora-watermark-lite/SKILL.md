@@ -1,22 +1,16 @@
 ---
 name: sora-watermark-lite
-description: LAMA-based Sora watermark remover for single videos or full directories. Use this whenever the user asks for better visual quality watermark removal, batch-process many MP4 files, or wants results closer to SoraWatermarkCleaner quality.
+description: Self-contained LAMA-based Sora watermark remover for single videos or full directories. Use this whenever the user asks for higher-quality local watermark removal without depending on the full SoraWatermarkCleaner repository.
 ---
 
 # sora-watermark-lite
 
-Use the bundled script for LAMA-based watermark removal.
+Use the bundled script for self-contained LAMA-based watermark removal.
 
 ## Install prerequisites
 
 1. Ensure `ffmpeg` is available in PATH.
-2. Ensure SoraWatermarkCleaner repository exists locally and expose it via `SORAWM_PATH`:
-
-```bash
-export SORAWM_PATH=/path/to/SoraWatermarkCleaner
-```
-
-3. Install this script's helper deps:
+2. Install Python deps:
 
 ```bash
 pip install -r scripts/requirements.txt
@@ -47,8 +41,6 @@ If the user already has conda environment `sorawm_m2`, use:
 bash scripts/run_clean.sh --input-dir "/absolute/path/input_dir" --output-dir "/absolute/path/output_dir"
 ```
 
-`run_clean.sh` will auto-set `SORAWM_PATH` on this machine if it finds the default local clone path.
-
 Or for single file:
 
 ```bash
@@ -57,6 +49,10 @@ bash scripts/run_clean.sh "/absolute/path/input.MP4" "/absolute/path/output_clea
 
 ## Useful options
 
+- `--device auto|cpu|mps`
+- `--conf 0.25`
+- `--expand 0.0`
+- `--max-gap 8`
 - `--detect-batch-size 4`
 - `--report /path/to/report.csv`
 
@@ -67,6 +63,7 @@ The script prints:
 - input/output path
 - processed frame counts
 - detected frame counts
+- selected device
 - elapsed seconds
 
 Batch mode also prints total batch elapsed seconds and writes a CSV report.
