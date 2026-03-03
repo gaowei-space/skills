@@ -1,15 +1,19 @@
-# sora-watermark-lite-skill
+# skills
 
-Portable skill package for lightweight Sora watermark removal.
+Multiple local skills repository.
 
 ## Layout
 
-- `sora-watermark-lite/` - skill folder to install
-- `sora-watermark-lite/scripts/clean_lite.py` - processing entry
-- `sora-watermark-lite/scripts/run_clean.sh` - convenience wrapper
+- `skills/` - skill source folders
+- `skills/sora-watermark-lite/` - lightweight Sora watermark remover
 
-## Local install test
+## Install a skill from this repo
 
 ```bash
-npx skills add . --skill sora-watermark-lite -y
+npx skills add . --skill sora-watermark-lite -g -y
 ```
+
+## Notes
+
+- This repository stores source skills only.
+- No packaged `.skill` files or `dist/` artifacts are tracked.
