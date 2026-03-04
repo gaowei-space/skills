@@ -33,6 +33,12 @@ Generate
 uv run {baseDir}/scripts/generate_image.py --prompt "your image description" --filename "output.png" --resolution 1K
 ```
 
+Custom model example
+
+```bash
+uv run {baseDir}/scripts/generate_image.py --prompt "your image description" --filename "output.png" --model "gemini-3-pro-image-preview"
+```
+
 Edit (single image)
 
 ```bash
@@ -55,6 +61,8 @@ API and endpoint
 Notes
 
 - Resolutions: `1K` (default), `2K`, `4K`.
+- Default model: `gemini-3.1-flash-image-preview`.
+- You can override at runtime with `--model`.
 - If `--resolution` is not explicitly passed and input image is provided, script can auto-detect from input size.
 - Compatible gateways that return image URLs in text are supported.
 - Use timestamps in filenames: `yyyy-mm-dd-hh-mm-ss-name.png`.

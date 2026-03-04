@@ -10,7 +10,7 @@
 Generate images using Google's Nano Banana Pro (Gemini 3 Pro Image) API.
 
 Usage:
-    uv run generate_image.py --prompt "your image description" --filename "output.png" [--resolution 1K|2K|4K] [--api-key KEY]
+    uv run generate_image.py --prompt "your image description" --filename "output.png" [--resolution 1K|2K|4K] [--model MODEL] [--api-key KEY]
 
 Multi-image editing (up to 14 images):
     uv run generate_image.py --prompt "combine these images" --filename "output.png" -i img1.png -i img2.png -i img3.png
@@ -82,6 +82,11 @@ def main():
     parser.add_argument(
         "--api-version",
         help="Gemini API version, e.g. v1beta (overrides GEMINI_API_VERSION env var)"
+    )
+    parser.add_argument(
+        "--model",
+        default="gemini-3.1-flash-image-preview",
+        help="Model name for image generation (default: gemini-3.1-flash-image-preview)"
     )
 
     args = parser.parse_args()
@@ -158,7 +163,7 @@ def main():
 
     try:
         response = client.models.generate_content(
-            model="gemini-3-pro-image-preview",
+            model=args.model,
             contents=contents,
             config=types.GenerateContentConfig(
                 response_modalities=["TEXT", "IMAGE"],
