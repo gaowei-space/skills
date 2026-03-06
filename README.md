@@ -28,7 +28,7 @@ npx skills add "git@github.com:gaowei-space/skills.git" --skill nano-banana-pro 
 
 - `nano-banana-pro` 依赖 `uv` 与 `GEMINI_API_KEY`
 - 可选三方网关环境变量：`GEMINI_BASE_URL`、`GEMINI_API_VERSION`
-- `sora-watermark-lite` 建议在 Apple Silicon 上使用 `PYTORCH_ENABLE_MPS_FALLBACK=1`
+- `sora-watermark-lite` 优先使用 `bash scripts/run_clean.sh` 调用现有 conda 环境；默认环境名为 `sorawm_m2`，也可通过 `SORA_WM_CONDA_ENV` 覆盖
 
 ## Conventions
 

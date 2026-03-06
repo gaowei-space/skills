@@ -7,10 +7,42 @@ description: Self-contained LAMA-based Sora watermark remover for single videos 
 
 Use the bundled script for self-contained LAMA-based watermark removal.
 
-## Install prerequisites
+## Recommended flow
+
+Prefer the wrapper script when the machine already has a prepared conda environment. In that case, do not reinstall Python dependencies.
+
+Prerequisites:
 
 1. Ensure `ffmpeg` is available in PATH.
-2. Install Python deps:
+2. Ensure `conda` is available in PATH.
+3. Ensure the runtime environment already contains the packages from `scripts/requirements.txt`.
+
+The wrapper defaults to conda env `sorawm_m2`.
+
+If the environment uses a different name, set `SORA_WM_CONDA_ENV` first:
+
+```bash
+export SORA_WM_CONDA_ENV=my_env_name
+```
+
+Batch mode:
+
+```bash
+bash scripts/run_clean.sh --input-dir "/absolute/path/input_dir" --output-dir "/absolute/path/output_dir"
+```
+
+Single file:
+
+```bash
+bash scripts/run_clean.sh "/absolute/path/input.MP4" "/absolute/path/output_cleaned.MP4"
+```
+
+## Fallback: direct Python mode
+
+Use this only when there is no ready conda environment.
+
+1. Ensure `ffmpeg` is available in PATH.
+2. Install Python deps into the current interpreter:
 
 ```bash
 pip install -r scripts/requirements.txt
@@ -33,19 +65,11 @@ python scripts/clean_lite.py \
   --pattern "*.MP4"
 ```
 
-## Wrapper mode
+## Notes
 
-If the user already has conda environment `sorawm_m2`, use:
-
-```bash
-bash scripts/run_clean.sh --input-dir "/absolute/path/input_dir" --output-dir "/absolute/path/output_dir"
-```
-
-Or for single file:
-
-```bash
-bash scripts/run_clean.sh "/absolute/path/input.MP4" "/absolute/path/output_cleaned.MP4"
-```
+- Prefer wrapper mode before suggesting `pip install`.
+- Only suggest reinstalling dependencies if wrapper mode fails because the conda environment is missing or incomplete.
+- On Apple Silicon, wrapper mode already sets `PYTORCH_ENABLE_MPS_FALLBACK=1`.
 
 ## Useful options
 
